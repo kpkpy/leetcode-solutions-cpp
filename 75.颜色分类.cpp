@@ -8,14 +8,16 @@
 class Solution {
 public:
     void sortColors(vector<int>& nums) {
-        for(auto i=0; i<nums.size(); i++){
-            for(auto j=i; j<nums.size(); j++){
-                if(nums.at(i)==nums.at(j)) j++;
-                else{
-                    swap(nums[i], nums[j]);
-                }
-            }
-            
+        int o=0; int l=0; int s=0;
+        for(int i=0; i<nums.size(); i++){
+            if(nums.at(i)==0) o++;
+            else if(nums.at(i)==1) l++;
+            else s++;
+        }
+        for(int i=0; i<nums.size(); i++){
+            if(o!=0){nums.at(i)=0; o--; continue;}
+            if(l!=0){nums.at(i)=1; l--; continue;}
+            if(s!=0){nums.at(i)=2; s--; continue;}
         }
     }
 };
