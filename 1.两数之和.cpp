@@ -11,7 +11,7 @@ public:
         vector<int> ret;
         unordered_map<int, int> umap;
         for(int i=0; i<nums.size();i++){
-            auto iter = umap.find(target);
+            auto iter = umap.find(target-nums[i]);
             if(iter!=umap.end()){
                 return {iter->second, i};
             }
