@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode.cn id=110 lang=cpp
+ * @lc app=leetcode.cn id=100 lang=cpp
  *
- * [110] 平衡二叉树
+ * [100] 相同的树
  */
 #include "include.h"
 // @lc code=start
@@ -18,17 +18,16 @@
  */
 class Solution {
 public:
-    bool isBalanced(TreeNode* root) {
-        int h = getHeight(root);
-        return h==-1? false : true;
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        return compare(p, q);
     }
 
-    int getHeight(TreeNode *root) {
-        if(root==NULL) return 0;
-        int lefth = getHeight(root->left);
-        int righth = getHeight(root->right);
-        if(lefth==-1||righth==-1) return -1;
-        else return abs(righth-lefth)>1? -1 : max(lefth, righth)+1;
+    bool compare(TreeNode *p, TreeNode *q) {
+        if(p==NULL&&q==NULL) return true;
+        else if(p==NULL&&q!=NULL) return false;
+        else if(p!=NULL&&q==NULL) return false;
+        else if(p->val!=q->val) return false;
+        return compare(p->left, q->left) && compare(p->right, q->right);
     }
 };
 // @lc code=end

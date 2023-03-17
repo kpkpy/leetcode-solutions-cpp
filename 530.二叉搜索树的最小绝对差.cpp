@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode.cn id=110 lang=cpp
+ * @lc app=leetcode.cn id=530 lang=cpp
  *
- * [110] 平衡二叉树
+ * [530] 二叉搜索树的最小绝对差
  */
 #include "include.h"
 // @lc code=start
@@ -18,17 +18,8 @@
  */
 class Solution {
 public:
-    bool isBalanced(TreeNode* root) {
-        int h = getHeight(root);
-        return h==-1? false : true;
-    }
-
-    int getHeight(TreeNode *root) {
-        if(root==NULL) return 0;
-        int lefth = getHeight(root->left);
-        int righth = getHeight(root->right);
-        if(lefth==-1||righth==-1) return -1;
-        else return abs(righth-lefth)>1? -1 : max(lefth, righth)+1;
+    int getMinimumDifference(TreeNode* root) {
+        
     }
 };
 // @lc code=end

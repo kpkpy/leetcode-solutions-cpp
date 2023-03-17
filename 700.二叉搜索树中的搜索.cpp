@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode.cn id=110 lang=cpp
+ * @lc app=leetcode.cn id=700 lang=cpp
  *
- * [110] 平衡二叉树
+ * [700] 二叉搜索树中的搜索
  */
 #include "include.h"
 // @lc code=start
@@ -18,17 +18,14 @@
  */
 class Solution {
 public:
-    bool isBalanced(TreeNode* root) {
-        int h = getHeight(root);
-        return h==-1? false : true;
+    TreeNode* searchBST(TreeNode* root, int val) {
+        return inordersearch(root, val);
     }
 
-    int getHeight(TreeNode *root) {
-        if(root==NULL) return 0;
-        int lefth = getHeight(root->left);
-        int righth = getHeight(root->right);
-        if(lefth==-1||righth==-1) return -1;
-        else return abs(righth-lefth)>1? -1 : max(lefth, righth)+1;
+    TreeNode* inordersearch(TreeNode* root, int val){
+        if(root==NULL || root->val==val) return root;
+        else if(val < root->val) return inordersearch(root->left, val);
+        else return inordersearch(root->right, val);
     }
 };
 // @lc code=end
