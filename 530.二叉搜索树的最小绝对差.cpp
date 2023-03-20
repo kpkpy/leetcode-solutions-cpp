@@ -17,9 +17,44 @@
  * };
  */
 class Solution {
-public:
+//private:
+//    TreeNode *pre = NULL;
+//    int res = INT_MAX;
+//public:
+//    int getMinimumDifference(TreeNode* root) {
+//        traversal(root);
+//        return res;
+//    }
+//
+//    void traversal(TreeNode *cur){
+//        if(cur==NULL) return;
+//        traversal(cur->left);
+//        if(pre!=NULL){
+//            res = min(res, cur->val-pre->val);
+//        }
+//        pre = cur;
+//        traversal(cur->right);
+//    }
+    public:
     int getMinimumDifference(TreeNode* root) {
-        
+        TreeNode *pre = NULL;
+        TreeNode *cur = root;
+        int res = INT_MAX;
+        stack<TreeNode*> stk;
+        while(cur!=NULL||!stk.empty()){
+            if(cur!=NULL){
+                stk.push(cur);
+                cur = cur->left;
+            }
+            else{
+                cur = stk.top();
+                stk.pop();
+                if(pre!=NULL) res = min(res, cur->val-pre->val);
+                pre = cur;
+                cur = cur->right;
+            }
+        }
+        return res;
     }
 };
 // @lc code=end
